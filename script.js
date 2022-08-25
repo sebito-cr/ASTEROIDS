@@ -1,3 +1,5 @@
+var ship;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   ship = new Ship();
@@ -6,13 +8,18 @@ function setup() {
 function draw() {
   background(0);
   ship.render();
+  ship.turn();
+}
+
+function keyReleased(){
+  ship.setRotation(0);
 }
 
 function keyPressed() {
   if (keyCode == RIGHT_ARROW){
-    ship.turn(0.1);
+    ship.setRotation(0.1);
   } else if (keyCode == LEFT_ARROW){
-    ship.turn(-0.1);
+    ship.setRotation(-0.1);
   }
 }
 
@@ -24,6 +31,7 @@ function Ship() {
 
   this.r = 15;
   this.heading = 0;
+  this.rotation = 0;
 
   this.render = function() {
     translate(this.pos.x, this.pos.y);
@@ -33,8 +41,12 @@ function Ship() {
     triangle(-this.r, this.r, this.r, this.r, 0, -this.r)
   }
 
+this.setRotation = function(a){
+  this.rotation = a;
+}
+  
   this.turn = function(angle) {
-    this.heading += angle;
+    this.heading += this.rotation;
   }
 
 }
