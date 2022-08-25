@@ -6,7 +6,14 @@ function setup() {
 function draw() {
   background(0);
   ship.render();
-  ship.turn(0.1);
+}
+
+function keyPressed() {
+  if (keyCode == RIGHT_ARROW){
+    ship.turn(0.1);
+  } else if (keyCode == LEFT_ARROW){
+    ship.turn(-0.1);
+  }
 }
 
 function Ship() {
