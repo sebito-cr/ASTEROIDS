@@ -29,7 +29,7 @@ function keyPressed() {
 
 function Ship() {
   this.pos = createVector(width / 2, height / 2);
-  this.r = 15;
+  this.r = 23;
   this.heading = 0;
   this.rotation = 0;
   this.vel = createVector (0,0);
@@ -44,11 +44,12 @@ function Ship() {
       this.boost();
     }
     this.pos.add(this.vel);
-    this.vel.mult(0.95);
+    this.vel.mult(0.99);
   }
 
   this.boost = function(){
     var force = p5.Vector.fromAngle(this.heading);
+    force.mult(0.1);
     this.vel.add(force);
   }
 
