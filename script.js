@@ -31,7 +31,7 @@ function keyPressed() {
 function Ship() {
   this.pos = createVector(width / 2, height / 2);
   this.r = 23;
-  this.heading = 0;
+  this.heading = 4.70;
   this.rotation = 0;
   this.vel = createVector (0,0);
   this.isBoosting = false;
