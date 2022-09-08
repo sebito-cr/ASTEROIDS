@@ -68,8 +68,6 @@ function Ship() {
     stroke(255);
     triangle(-this.r, this.r, this.r, this.r, 0, -this.r)
     pop();
-
-        translate(this.pos.x, this.pos.y);
   }
 
 this.edges = function(){
