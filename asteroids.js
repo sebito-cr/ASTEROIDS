@@ -1,9 +1,11 @@
-function Asteroid() {
+class Asteroid{
+  constructor() {
   this.pos = createVector(random(width), random(height))
   this.r = 50;
   this.total = floor(random(5, 15));
-
-  this.render = function() {
+  }
+  
+  render() {
     push();
     stroke(255);
     noFill();

@@ -6,11 +6,11 @@ function setup() {
   ship = new Ship();
   asteroids.push(new Asteroid());
 
-  bg = loadImage('Images/bg.jpg')
+  //bg = loadImage('Images/bg.jpg')
 }
 
 function draw() {
-  background(bg);
+  background(0);
   ship.render();
   ship.turn();
   ship.update();
@@ -36,19 +36,21 @@ function keyPressed() {
   }
 }
 
-function Ship() {
+class Ship{
+  constructor(){
   this.pos = createVector(width / 2, height / 2);
   this.r = 23;
   this.heading = 4.70;
   this.rotation = 0;
   this.vel = createVector (0,0);
   this.isBoosting = false;
+  }
 
-  this.boosting = function (b){
+  boosting(b){
     this.isBoosting = b;
   }
 
-  this.update  = function(){
+  update(){
     if (this.isBoosting){
       this.boost();
     }
@@ -56,13 +58,13 @@ function Ship() {
     this.vel.mult(0.99);
   }
 
-  this.boost = function(){
+  boost(){
     var force = p5.Vector.fromAngle(this.heading);
     force.mult(0.1);
     this.vel.add(force);
   }
 
-  this.render = function() {
+  render() {
     push ();
     translate(this.pos.x, this.pos.y);
     rotate(this.heading + PI / 2)
@@ -72,7 +74,7 @@ function Ship() {
     pop();
   }
 
-this.edges = function(){
+  edges(){
   if (this.pos.x > width + this.r){
     this.pos.x = -this.r;
   } else if (this.pos.x < -this.r){
@@ -85,11 +87,11 @@ this.edges = function(){
    }
 }
   
-this.setRotation = function(a){
+  setRotation(a){
   this.rotation = a;
 }
   
-  this.turn = function() {
+  turn() {
     this.heading += this.rotation;
   }
 
