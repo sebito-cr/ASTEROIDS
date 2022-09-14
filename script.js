@@ -5,10 +5,12 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   ship = new Ship();
   asteroids.push(new Asteroid());
+
+  bg = loadImage('Images/bg.jpg')
 }
 
 function draw() {
-  background(0);
+  background(bg);
   ship.render();
   ship.turn();
   ship.update();
