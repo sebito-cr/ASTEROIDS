@@ -9,12 +9,12 @@ function setup() {
   asteroids.push(new Asteroid());
   }
   
-  //bg = loadImage('Images/bg.jpg');
+  bg = loadImage('Images/bg.jpg');
 }
 
 
 function draw() {
-  background(0);
+  background(bg);
 
   
   for (var i = 0; i < asteroids.length; i++) {
