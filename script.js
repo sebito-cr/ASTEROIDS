@@ -9,12 +9,12 @@ function setup() {
   asteroids.push(new Asteroid());
   }
   
-  bg = loadImage('Images/bg.jpg');
+  //bg = loadImage('Images/bg.jpg');
 }
 
 
 function draw() {
-  background(bg);
+  background(0);
   ship.render();
   ship.turn();
   ship.update();
@@ -39,13 +39,13 @@ function keyReleased(){
 }
 
 function keyPressed() {
-  if (key == ' ') {
-    lasers.push(new Laser(ship.pos));
-  } else if (keyCode == RIGHT_ARROW){
+  if (key == ' '){
+    lasers.push(new Laser(ship.pos, ship.heading));
+  } else if (key == 'd'){
     ship.setRotation(0.1);
-  } else if (keyCode == LEFT_ARROW){
+  } else if (key == 'a'){
     ship.setRotation(-0.1);
-  } else if (keyCode == UP_ARROW){
+  } else if (key == 'w'){
     ship.boosting(true);
   }
 }

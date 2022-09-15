@@ -4,6 +4,7 @@ class Asteroid{
   this.vel = p5.Vector.random2D();
   this.r = random(70, 100);
   this.total = floor(random(5, 15));
+  this.update
   this.offset = [];
   for (var i=0; i < this.total; i++) {
     this.offset[i] = random(-15, 15);

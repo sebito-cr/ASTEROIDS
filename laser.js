@@ -1,7 +1,7 @@
 class Laser {
-  constructor(spos) {
+  constructor(spos, angle) {
     this.pos = createVector(spos.x, spos.y);
-    this.vel = createVector();
+    this.vel = p5.Vector.fromAngle(angle);
   }
 
   update(){
