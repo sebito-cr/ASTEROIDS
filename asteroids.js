@@ -2,7 +2,7 @@ class Asteroid{
   constructor() {
   this.pos = createVector(random(width), random(height))
   this.vel = p5.Vector.random2D();
-  this.r = random(70, 100);
+  this.r = random(30, 80);
   this.total = floor(random(5, 15));
   this.update
   this.offset = [];

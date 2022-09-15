@@ -9,12 +9,12 @@ function setup() {
   asteroids.push(new Asteroid());
   }
   
-  bg = loadImage('Images/bg.jpg');
+  //bg = loadImage('Images/bg.jpg');
 }
 
 
 function draw() {
-  background(bg);
+  background(0);
 
   
   for (var i = 0; i < asteroids.length; i++) {
@@ -23,9 +23,14 @@ function draw() {
     asteroids[i].edges();
   }
 
-    for (var i = 0; i < lasers.length; i++) {
+  for (var i = 0; i < lasers.length; i++) {
     lasers[i].render();
     lasers[i].update();
+    for (var j = 0; j < asteroids.length; j++){
+      if (lasers[i].hits(asteroids[j])){
+        
+      } 
+    }
   }
 
   ship.render();

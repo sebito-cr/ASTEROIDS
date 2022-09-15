@@ -16,7 +16,15 @@ class Laser {
    point(this.pos.x, this.pos.y); 
    pop();
   }
-  
-    
+
+ hits(asteroid){
+   var d = dist(this.pos.x, this.pos.y, asteroid.pos.x, asteroid.pos.y); 
+   if (d < asteroid.r){
+     return true;
+   } else{
+     return false;
+   }
+  } 
+   
 }
 
