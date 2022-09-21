@@ -1,33 +1,42 @@
-class Ship{
-  constructor(){
-  this.pos = createVector(width / 2, height / 2);
-  this.r = 23;
-  this.heading = 4.70;
-  this.rotation = 0;
-  this.vel = createVector (0,0);
-  this.isBoosting = false;
+class Ship {
+  constructor() {
+    this.pos = createVector(width / 2, height / 2);
+    this.r = 23;
+    this.heading = 4.70;
+    this.rotation = 0;
+    this.vel = createVector(0, 0);
+    this.isBoosting = false;
   }
 
-  boosting(b){
+  boosting(b) {
     this.isBoosting = b;
   }
 
-  update(){
-    if (this.isBoosting){
+  update() {
+    if (this.isBoosting) {
       this.boost();
     }
     this.pos.add(this.vel);
     this.vel.mult(0.99);
   }
 
-  boost(){
+  boost() {
     var force = p5.Vector.fromAngle(this.heading);
     force.mult(0.1);
     this.vel.add(force);
   }
 
+  hits(asteroid) {
+    var d = dist(this.pos.x, this.pos.y, asteroid.pos.x, asteroid.pos.y);
+    if (d < this.r + asteroid.r) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
-    push ();
+    push();
     translate(this.pos.x, this.pos.y);
     rotate(this.heading + PI / 2)
     fill(0);
@@ -36,23 +45,23 @@ class Ship{
     pop();
   }
 
-  edges(){
-  if (this.pos.x > width + this.r){
-    this.pos.x = -this.r;
-  } else if (this.pos.x < -this.r){
-    this.pos.x = width +this.r;
+  edges() {
+    if (this.pos.x > width + this.r) {
+      this.pos.x = -this.r;
+    } else if (this.pos.x < -this.r) {
+      this.pos.x = width + this.r;
+    }
+    if (this.pos.y > height + this.r) {
+      this.pos.y = -this.r;
+    } else if (this.pos.y < -this.r) {
+      this.pos.y = height + this.r;
+    }
   }
-   if (this.pos.y > height + this.r){
-    this.pos.y = -this.r;
-  } else if (this.pos.y < -this.r){
-    this.pos.y = height +this.r;
-   }
-}
-  
-  setRotation(a){
-  this.rotation = a;
-}
-  
+
+  setRotation(a) {
+    this.rotation = a;
+  }
+
   turn() {
     this.heading += this.rotation;
   }
