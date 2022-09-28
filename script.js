@@ -1,22 +1,44 @@
 var ship;
 var asteroids = [];
 var lasers = [];
+var gameState = 0;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   ship = new Ship();
-  for (var i = 0; i < 7; i++) {
+  for (var i = 0; i < 10; i++) {
     asteroids.push(new Asteroid());
   }
 
-  //bg = loadImage('Images/bg.jpg');
 }
 
 
 function draw() {
   background(0);
 
+  if (gameState == 0) {
+    menu();
+  }
 
+  if (gameState == 1) {
+    game();
+  }
+
+  if (gameState == 2) {
+    gameOver();
+  }
+}
+
+function preload() {
+  menuImage = loadImage("Images/menuscreen.jpg")
+}
+
+function menu() {
+  background(menuImage)
+}
+
+function game() {
   for (var i = 0; i < asteroids.length; i++) {
     if (ship.hits(asteroids[i])) {
       console.log('no!')
@@ -50,9 +72,11 @@ function draw() {
   ship.turn();
   ship.update();
   ship.edges();
-
 }
 
+function gameOver() {
+
+}
 
 function keyReleased() {
   ship.setRotation(0);
@@ -60,6 +84,10 @@ function keyReleased() {
 }
 
 function keyPressed() {
+  if (keyCode == ' '){
+    gameState = 1;
+  }
+  
   if (key == ' ') {
     lasers.push(new Laser(ship.pos, ship.heading));
   } else if (key == 'd') {

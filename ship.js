@@ -20,7 +20,7 @@ class Ship {
     this.vel.mult(0.99);
   }
 
-  boost() {
+  boost() { 
     var force = p5.Vector.fromAngle(this.heading);
     force.mult(0.1);
     this.vel.add(force);
