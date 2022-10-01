@@ -13,7 +13,6 @@ function setup() {
 
 }
 
-
 function draw() {
   background(0);
 
@@ -84,10 +83,10 @@ function keyReleased() {
 }
 
 function keyPressed() {
-  if (keyCode == ' '){
+  if (keyCode == ' ') {
     gameState = 1;
   }
-  
+
   if (key == ' ') {
     lasers.push(new Laser(ship.pos, ship.heading));
   } else if (key == 'd') {
