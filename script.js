@@ -41,6 +41,7 @@ function game() {
   for (var i = 0; i < asteroids.length; i++) {
     if (ship.hits(asteroids[i])) {
       console.log('no!')
+      gameState = 2;
     }
     asteroids[i].render();
     asteroids[i].update();
@@ -74,7 +75,7 @@ function game() {
 }
 
 function gameOver() {
-
+  background(menuImage)
 }
 
 function keyReleased() {
