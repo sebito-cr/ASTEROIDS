@@ -83,17 +83,17 @@ function keyReleased() {
 }
 
 function keyPressed() {
-  if (keyCode == ' ') {
+  if (keyCode === 32) {
     gameState = 1;
   }
 
-  if (key == ' ') {
+  if (keyCode == 32) {
     lasers.push(new Laser(ship.pos, ship.heading));
-  } else if (key == 'd') {
+  } else if (keyCode == 68) {
     ship.setRotation(0.1);
-  } else if (key == 'a') {
+  } else if (keyCode == 65) {
     ship.setRotation(-0.1);
-  } else if (key == 'w') {
+  } else if (keyCode == 87) {
     ship.boosting(true);
   }
 }
