@@ -2,15 +2,19 @@ var ship;
 var asteroids = [];
 var lasers = [];
 var gameState = 0;
-
+var liveCounter = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  gameReset();
+}
+
+function gameReset(){
   ship = new Ship();
+  asteroids = []; 
   for (var i = 0; i < 10; i++) {
     asteroids.push(new Asteroid());
-  }
-
+  }  
 }
 
 function draw() {
@@ -18,20 +22,22 @@ function draw() {
 
   if (gameState == 0) {
     menu();
+    return;
   }
 
   if (gameState == 1) {
     game();
+    return;
   }
 
   if (gameState == 2) {
     gameOver();
+    return;
   }
 }
 
 function preload() {
   menuImage = loadImage("Images/menuscreen.jpg")
-  overImage = loadImage("Images/gameover.jpg")
 }
 
 function menu() {
@@ -39,10 +45,18 @@ function menu() {
 }
 
 function game() {
+  fill(255);
+  text("lives" + liveCounter, 0, 0, 100, 100);
   for (var i = 0; i < asteroids.length; i++) {
     if (ship.hits(asteroids[i])) {
-      console.log('no!')
+      //console.log('no!')
+      liveCounter -=1;
+      if (liveCounter == 0){
       gameState = 2;
+      } else {
+        gameReset();
+      }
+      //gameState = 2;
     }
     asteroids[i].render();
     asteroids[i].update();
@@ -76,8 +90,7 @@ function game() {
 }
 
 function gameOver() {
-  background(overImage)
-  
+  background(menuImage)
 }
 
 function keyReleased() {
@@ -85,19 +98,29 @@ function keyReleased() {
   ship.boosting(false);
 }
 
-function keyPressed() {
-  if (keyCode === 32) {
-    gameState = 1;
-  }
+function gameStart() {
+  gameState = 1;
+  liveCounter = 3;
+}
 
-  if (keyCode == 32) {
-    lasers.push(new Laser(ship.pos, ship.heading));
-  } else if (keyCode == 68) {
-    ship.setRotation(0.1);
-  } else if (keyCode == 65) {
-    ship.setRotation(-0.1);
-  } else if (keyCode == 87) {
-    ship.boosting(true);
+function keyPressed() {
+  if (gameState == 0) {
+    if (keyCode === 32) {
+      gameStart();
+    }
+    return;
+  }
+  if (gameState == 1) {
+    if (keyCode == 32) {
+      lasers.push(new Laser(ship.pos, ship.heading));
+    } else if (keyCode == 68) {
+      ship.setRotation(0.1);
+    } else if (keyCode == 65) {
+      ship.setRotation(-0.1);
+    } else if (keyCode == 87) {
+      ship.boosting(true);
+    }
+    return;
   }
 }
 
