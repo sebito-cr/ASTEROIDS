@@ -4,6 +4,7 @@ var lasers = [];
 var gameState = 0;
 var liveCounter = 0;
 var immunityCounter = 0;
+var scoreCounter = 0;
 
 function setup() {
   //createCanvas(windowWidth, windowHeight);
@@ -61,6 +62,7 @@ function game() {
   }
   fill(255);
   text("lives" + liveCounter, 0, 0, 100, 100);
+  text("score" + scoreCounter, 100, 0, 100, 100)
   for (var i = 0; i < asteroids.length; i++) {
     if (ship.hits(asteroids[i])) {
       //console.log('no!')
@@ -93,6 +95,7 @@ function game() {
           }
           asteroids.splice(j, 1);
           lasers.splice(i, 1);
+          scoreCounter += 100;
           console.log(asteroids.length)
           if (asteroids.length == 0) {
             newAsteroid();
@@ -121,10 +124,17 @@ function keyReleased() {
 function gameStart() {
   gameState = 1;
   liveCounter = 3;
+  scoreCounter = 0;
 }
 
 function keyPressed() {
   if (gameState == 0) {
+    if (keyCode === 32) {
+      gameStart();
+    }
+    return;
+  }
+  if (gameState == 2) {
     if (keyCode === 32) {
       gameStart();
     }
