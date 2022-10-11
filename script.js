@@ -3,6 +3,7 @@ var asteroids = [];
 var lasers = [];
 var gameState = 0;
 var liveCounter = 0;
+var immunityCounter = 0;
 
 function setup() {
   //createCanvas(windowWidth, windowHeight);
@@ -11,6 +12,7 @@ function setup() {
 }
 
 function gameReset() {
+  immunityCounter = frameCount;
   ship = new Ship();
   asteroids = [];
   for (var i = 0; i < 8; i++) {
@@ -53,18 +55,24 @@ function menu() {
 }
 
 function game() {
+  var shipColour = 255;
+  if ((frameCount - immunityCounter) / frameRate() > 3) {
+    shipColour = 0;
+  }
   fill(255);
   text("lives" + liveCounter, 0, 0, 100, 100);
   for (var i = 0; i < asteroids.length; i++) {
     if (ship.hits(asteroids[i])) {
       //console.log('no!')
-      liveCounter -= 1;
-      if (liveCounter == 0) {
-        gameState = 2;
-      } else {
-        gameReset();
+      if (shipColour == 0) {
+        liveCounter -= 1;
+        if (liveCounter == 0) {
+          gameState = 2;
+        } else {
+          gameReset();
+        }
+        //gameState = 2;
       }
-      //gameState = 2;
     }
     asteroids[i].render();
     asteroids[i].update();
@@ -95,7 +103,7 @@ function game() {
     }
   }
 
-  ship.render();
+  ship.render(shipColour);
   ship.turn();
   ship.update();
   ship.edges();
