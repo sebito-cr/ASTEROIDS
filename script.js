@@ -5,6 +5,7 @@ var gameState = 0;
 var liveCounter = 0;
 var immunityCounter = 0;
 var scoreCounter = 0;
+var highScore = 0;
 
 function setup() {
   //createCanvas(windowWidth, windowHeight);
@@ -63,12 +64,15 @@ function game() {
   fill(255);
   text("lives" + liveCounter, 0, 0, 100, 100);
   text("score" + scoreCounter, 100, 0, 100, 100)
+    text("high score" + highScore, 200, 0, 100, 100);
   for (var i = 0; i < asteroids.length; i++) {
     if (ship.hits(asteroids[i])) {
       //console.log('no!')
       if (shipColour == 0) {
         liveCounter -= 1;
         if (liveCounter == 0) {
+          if (scoreCounter > highScore)
+            highScore = scoreCounter;
           gameState = 2;
         } else {
           gameReset();
@@ -114,6 +118,8 @@ function game() {
 
 function gameOver() {
   background(menuImage)
+    fill(255);
+  text("high score" + highScore, 0, 0, 100, 100);
 }
 
 function keyReleased() {
