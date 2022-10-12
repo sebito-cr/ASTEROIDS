@@ -50,6 +50,7 @@ function draw() {
 
 function preload() {
   menuImage = loadImage("Images/menuscreen.jpg")
+  overImage = loadImage("Images/gameover.jpg")
 }
 
 function menu() {
@@ -118,7 +119,7 @@ function game() {
 }
 
 function gameOver() {
-  background(menuImage)
+  background(overImage)
   fill(255);
   text("high score" + highScore, 0, 0, 100, 100);
 }
