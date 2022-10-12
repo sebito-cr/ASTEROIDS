@@ -80,11 +80,12 @@ function game() {
         //gameState = 2;
       }
     }
-    asteroids[i].render();
-    asteroids[i].update();
-    asteroids[i].edges();
+    if (asteroids[i]) {
+      asteroids[i].render();
+      asteroids[i].update();
+      asteroids[i].edges();
+    }
   }
-
   for (var i = lasers.length - 1; i >= 0; i--) {
     lasers[i].render();
     lasers[i].update();
