@@ -51,6 +51,7 @@ function draw() {
 function preload() {
   menuImage = loadImage("Images/menuscreen.jpg")
   overImage = loadImage("Images/gameover.jpg")
+  music = loadSound('asteroids.mp3');
 }
 
 function menu() {
@@ -75,6 +76,7 @@ function game() {
           if (scoreCounter > highScore)
             highScore = scoreCounter;
           gameState = 2;
+          music.stop();
         } else {
           gameReset();
         }
@@ -133,6 +135,7 @@ function gameStart() {
   gameState = 1;
   liveCounter = 3;
   scoreCounter = 0;
+  music.loop();
 }
 
 function keyPressed() {
