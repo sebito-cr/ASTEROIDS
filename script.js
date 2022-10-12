@@ -64,7 +64,7 @@ function game() {
   fill(255);
   text("lives" + liveCounter, 0, 0, 100, 100);
   text("score" + scoreCounter, 100, 0, 100, 100)
-    text("high score" + highScore, 200, 0, 100, 100);
+  text("high score" + highScore, 200, 0, 100, 100);
   for (var i = 0; i < asteroids.length; i++) {
     if (ship.hits(asteroids[i])) {
       //console.log('no!')
@@ -118,7 +118,7 @@ function game() {
 
 function gameOver() {
   background(menuImage)
-    fill(255);
+  fill(255);
   text("high score" + highScore, 0, 0, 100, 100);
 }
 
